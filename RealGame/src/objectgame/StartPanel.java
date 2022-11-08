@@ -31,6 +31,7 @@ public class StartPanel extends Panel {
     public void paintPanel(Graphics g) {
         if(this.isStatus()){
             super.paintPanel(g);
+            paintTitle(g);
             paintButtonStart(g);
             paintButtonInfor(g);
             paintButtonEnd(g);
@@ -52,6 +53,11 @@ public class StartPanel extends Panel {
                 System.exit(0);
             }
         }
+    }
+    public void paintTitle(Graphics g){
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Arial", 1, 40));
+        g.drawString("FLY WAR", 150, 150);
     }
     public void paintButtonStart(Graphics g){
         g.setColor(Color.red);

@@ -2,6 +2,7 @@ package CacheLoader;
 
 
 import mainGame.History;
+import objectgame.PanelClear;
 import objectgame.Player;
 import objectgame.Score;
 
@@ -50,9 +51,18 @@ public class DataHistory {
             if(Player.isDeath){
                 String time = getCurrentTime();
                 String score = Integer.toString(Score.scoreCount);
-                String status = "Game over";
+                String status = "Game Over";
                 datas.add(time + ","+score+","+status);
-//                System.out.println(datas);
+                for(String data:datas){
+                    writeDataHistory(datas);
+                }
+                isInterrupt = true;
+            }
+            if(PanelClear.isClearGame){
+                String time = getCurrentTime();
+                String score = Integer.toString(Score.scoreCount);
+                String status = "Game Clear";
+                datas.add(time + ","+score+","+status);
                 for(String data:datas){
                     writeDataHistory(datas);
                 }

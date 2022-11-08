@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener{
     private StartPanel startPanel;
     private PauseGame pauseGamePanel;
     private PanelOver panelOver;
+    private PanelClear panelClear;
     private DataHistory dataHistory;
     public static boolean pauseGame = true;
     public static boolean gameStart = true;
@@ -35,8 +36,9 @@ public class GamePanel extends JPanel implements ActionListener{
         startPanel = new StartPanel(true);
         pauseGamePanel = new PauseGame();
         panelOver = new PanelOver();
+        panelClear = new PanelClear();
         AdapterGame adapterGame = new AdapterGame(player, pauseGamePanel);
-        MouseAdapter adapterMouse = new MouseAdapter(startPanel, pauseGamePanel, panelOver);
+        MouseAdapter adapterMouse = new MouseAdapter(startPanel, pauseGamePanel, panelOver, panelClear);
         addMouseListener(adapterMouse);
         addKeyListener(adapterGame);
         cacheLoader = new CacheLoader();
@@ -63,12 +65,16 @@ public class GamePanel extends JPanel implements ActionListener{
             if(gameEnd){
                 panelOver.paintPanelOver(g);
             }
-            if(PanelOver.gameOver){
+            if(PanelClear.showPanelClear){
+                panelClear.paintPanelOver(g);
+            }
+            if(PanelOver.gameOver || PanelClear.gameClear){
                 player.resetGame();
                 score.resetGame();
                 enemyss.resetGame();
                 bullets.resetGame();
                 PanelOver.gameOver = false;
+                PanelClear.gameClear = false;
             }
         }else{
             if(gameStart){

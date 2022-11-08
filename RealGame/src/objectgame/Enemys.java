@@ -56,6 +56,11 @@ public class Enemys {
         if(a > 500){
             a=0;
         }
+        if(i == 3){
+            PanelClear.isClearGame = true;
+            PanelClear.showPanelClear = true;
+            i++;
+        }
         if(i < 3){
             if(a % 500 == 0){
                 if(enemys1.size() == 0){
