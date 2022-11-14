@@ -48,7 +48,6 @@ public class GamePanel extends JPanel implements ActionListener{
         score = new Score(0);
         startPanel = new StartPanel(true);
         dataHistory = new DataHistory();
-        sound = new Sound();
     }
 
     @Override
@@ -57,8 +56,8 @@ public class GamePanel extends JPanel implements ActionListener{
         if(pauseGame == false){
             backGround.paintBackGround(g);
             player.paintPlayer(g);
-            bullets.paintBullets(g);
             enemyss.paintEnemy(g);
+            bullets.paintBullets(g);
             score.paintScore(g);
             if(PauseGame.isPause && PauseGame.showPausePanel){
                 pauseGamePanel.paintPausePanel(g);

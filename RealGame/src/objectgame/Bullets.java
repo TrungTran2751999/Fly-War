@@ -22,8 +22,10 @@ public class Bullets {
     public static Stack<Rectangle> collisonBoundBullet2;
     public static Stack<Bullets> bullets1;
     public static Stack<Bullets> bullets2;
+    private Hit hit;
     public Bullets() throws IOException {
         importImage();
+        hit = new Hit();
         bullets1 = new Stack<>();
         bullets2 = new Stack<>();
         collisonBoundBullet1 = new Stack<>();
@@ -43,17 +45,21 @@ public class Bullets {
             collisonBoundBullet1.get(i).setLocation(x1, y1);
             bulletMove1(i);
         }
-            for(int i=0; i<bullets2.size(); i++){
-                int x2 = (int) (bullets2.get(i).getX()+446/6-this.w/2);
-                int y2 = (int) (bullets2.get(i).getY()+77/6);
-                g.drawImage(image, x2, y2, w,h,  null);
-                collisonBoundBullet2.get(i).setLocation(x2, y2);
-                bulletMove2(i);
-            }
+        for(int i=0; i<bullets2.size(); i++){
+            int x2 = (int) (bullets2.get(i).getX()+446/6-this.w/2);
+            int y2 = (int) (bullets2.get(i).getY()+77/6);
+            g.drawImage(image, x2, y2, w,h,  null);
+            collisonBoundBullet2.get(i).setLocation(x2, y2);
+            bulletMove2(i);
+        }
+        hit.paintHit(g);
     }
     public boolean haveCollision1(Rectangle collision){
        for(int i=0; i<collisonBoundBullet1.size(); i++){
            if(collisonBoundBullet1.get(i).intersects(collision)){
+               double x = collisonBoundBullet1.get(i).getX();
+               double y = collisonBoundBullet1.get(i).getY();
+               hit.hitBullet(new Hit(x, y));
                collisonBoundBullet1.remove(i);
                bullets1.remove(i);
                return true;
@@ -64,6 +70,9 @@ public class Bullets {
     public boolean haveCollision2(Rectangle collision){
         for(int i=0; i<collisonBoundBullet2.size(); i++){
             if(collisonBoundBullet2.get(i).intersects(collision)){
+                double x = collisonBoundBullet2.get(i).getX();
+                double y = collisonBoundBullet2.get(i).getY();
+                hit.hitBullet(new Hit(x, y));
                 collisonBoundBullet2.remove(i);
                 bullets2.remove(i);
                 return true;

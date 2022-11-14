@@ -179,7 +179,6 @@ public class Player {
         }
     }
     public void keyReleased(KeyEvent e){
-        if(PauseGame.isPause == false) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT: {
                     setMoveLeft(false);
@@ -198,12 +197,13 @@ public class Player {
                     break;
                 }
                 case KeyEvent.VK_SPACE: {
-                    sound.playSoundFireOfPlayer();
-                    fire();
+                    if(PauseGame.isPause == false) {
+                        sound.playSoundFireOfPlayer();
+                        fire();
+                    }
                 }
             }
         }
-    }
 
 
     public void setX(double x) {

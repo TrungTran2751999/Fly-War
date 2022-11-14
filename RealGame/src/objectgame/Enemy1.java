@@ -61,6 +61,7 @@ public class Enemy1 extends Enemys{
             for(int i=0; i<collssions.length; i++){
                 if(bullets.haveCollision1(collssions[i])){
                     super.playSound();
+
                     this.setHeathBar(this.getHeath()*4);
                     return true;
                 }
