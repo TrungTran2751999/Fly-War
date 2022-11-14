@@ -28,6 +28,7 @@ public class Enemys {
     private int a;
     private int i;
     private double heathBar;
+    private Sound sound;
     public Enemys(double x, double y, double w, double h, double speedX, double speedY, boolean isDeath, int heath, double heathBar) {
         this.x = x;
         this.y = y;
@@ -39,6 +40,7 @@ public class Enemys {
         this.heath = heath;
         this.heathBar = heathBar;
         backGround = new BackGround(true);
+        sound = new Sound();
     }
     public Enemys() throws IOException {
         enemys = new Enemys[]{new Enemy1(1, -131, 186, 131, 2, 2, false, 100, 400),
@@ -50,6 +52,7 @@ public class Enemys {
         enemys1Img = new ArrayList<>();
         medal = new Medal();
         backGround = new BackGround(true);
+        sound = new Sound();
     }
     public void paintEnemy(Graphics g){
         a++;
@@ -59,6 +62,7 @@ public class Enemys {
         if(i == 3){
             PanelClear.isClearGame = true;
             PanelClear.showPanelClear = true;
+            sound.playSoundgameClear();
             i++;
         }
         if(i < 3){
@@ -72,7 +76,7 @@ public class Enemys {
                 g.drawImage(enemys1Img.get(i-i), (int) enemys1.get(i-i).getX(), (int) enemys1.get(i-i).getY(), (int) enemys1.get(i-i).getW(), (int) enemys1.get(i-i).getH(), null);
                 enemys1.get(i-i).enemyMove();
                 if(medal.havevCollsionPlayer()){
-                    double widthVisible = backGround.getX() + backGround.getWidth() - 300;
+                    double widthVisible = backGround.getX() + backGround.getWidth() - 200;
                     double xBackground = backGround.getX();
                     double x = Math.floor(Math.random()*(widthVisible-xBackground)+xBackground);
                     medal = new Medal(x);
@@ -93,7 +97,7 @@ public class Enemys {
     };
     public void enemyMove(){
         if(PauseGame.isPause == false){
-            if(this.y < 0){
+            if(this.y < 30){
                 this.y+=1;
             }else{
                 if(this.x+this.w >= backGround.getPosX1() + backGround.getWidth() || this.x<= backGround.getPosX1()){
@@ -133,6 +137,9 @@ public class Enemys {
     }
     public boolean haveCollsionBullets2(){
         return false;
+    }
+    public void playSound(){
+        sound.playSoundBulletImpact();
     }
     public Rectangle[] updateColission() {
         return colission;

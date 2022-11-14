@@ -29,6 +29,7 @@ public class PanelOver extends Panel {
         buttonExit = new Rectangle((int) xButton, (int) (y + 250), (int) wButton, (int) hButton);
     }
     public void paintPanelOver(Graphics g){
+            g.setColor(Color.BLACK);
             g.fillRect((int) x, (int) y, (int) w, (int) h);
             g.setColor(Color.ORANGE);
             g.setFont(new Font("Arial", 1, 30));

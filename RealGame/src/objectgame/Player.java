@@ -34,11 +34,13 @@ public class Player {
     private double heathBar = this.heath*4;
     private double widthHeath = this.heathBar;
     private BackGround backGround;
+    private Sound sound;
 
     public Player() throws IOException {
         bullets = new Bullets();
         collisionPlayer = new Rectangle[8];
         backGround = new BackGround();
+        sound = new Sound();
         importImage();
     }
     public void paintPlayer(Graphics g){
@@ -99,6 +101,7 @@ public class Player {
     }
     public void playerDeath(){
         if(heath <= 0){
+            sound.playSoundgameOver();
             isDeath = true;
             GamePanel.gameEnd = true;
             GamePanel.gameRun = false;
@@ -120,6 +123,7 @@ public class Player {
             for(int j=0; j<collisionBoundEnemy1.length;j++){
                 for(int g=0; g<collisionBoundEnemy1[j].size(); g++){
                     if(collisionPlayer[i].intersects((Rectangle) collisionBoundEnemy1[j].get(g))){
+                        sound.playSoundBulletImpact();
                         heath-=BulletEnemy1.damage;
                         heathBar = this.heath*4;
                         BulletEnemy1.bulletsBounds[j].remove(g);
@@ -130,6 +134,7 @@ public class Player {
             for(int j=0; j<collisionBoundEnemy2.length;j++){
                 for(int g=0; g<collisionBoundEnemy2[j].size(); g++){
                     if(collisionPlayer[i].intersects((Rectangle) collisionBoundEnemy2[j].get(g))){
+                        sound.playSoundBulletImpact();
                         heath-=BulletEnemy2.damage;
                         heathBar = this.heath*4;
                         BulletEnemy2.bulletsBounds[j].remove(g);
@@ -140,6 +145,7 @@ public class Player {
             for(int j=0; j<collisionBoundEnemy3.length;j++){
                 for(int g=0; g<collisionBoundEnemy3[j].size(); g++){
                     if(collisionPlayer[i].intersects((Rectangle) collisionBoundEnemy3[j].get(g))){
+                        sound.playSoundBulletImpact();
                         heath-=BulletEnemy3.damage;
                         heath-=BulletEnemy3.damage;
                         heathBar = this.heath*4;
@@ -173,25 +179,28 @@ public class Player {
         }
     }
     public void keyReleased(KeyEvent e){
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_LEFT:{
-                setMoveLeft(false);
-                break;
-            }
-            case KeyEvent.VK_RIGHT:{
-                setMoveRight(false);
-                break;
-            }
-            case KeyEvent.VK_UP:{
-                setMoveUp(false);
-                break;
-            }
-            case KeyEvent.VK_DOWN:{
-                setMoveDown(false);
-                break;
-            }
-            case KeyEvent.VK_SPACE:{
-                fire();
+        if(PauseGame.isPause == false) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT: {
+                    setMoveLeft(false);
+                    break;
+                }
+                case KeyEvent.VK_RIGHT: {
+                    setMoveRight(false);
+                    break;
+                }
+                case KeyEvent.VK_UP: {
+                    setMoveUp(false);
+                    break;
+                }
+                case KeyEvent.VK_DOWN: {
+                    setMoveDown(false);
+                    break;
+                }
+                case KeyEvent.VK_SPACE: {
+                    sound.playSoundFireOfPlayer();
+                    fire();
+                }
             }
         }
     }

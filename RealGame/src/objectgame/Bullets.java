@@ -22,20 +22,16 @@ public class Bullets {
     public static Stack<Rectangle> collisonBoundBullet2;
     public static Stack<Bullets> bullets1;
     public static Stack<Bullets> bullets2;
-    public Enemy enemy;
     public Bullets() throws IOException {
         importImage();
         bullets1 = new Stack<>();
         bullets2 = new Stack<>();
         collisonBoundBullet1 = new Stack<>();
         collisonBoundBullet2 = new Stack<>();
-        enemy = new Enemy();
     }
     public Bullets(double x, double y){
         this.x = x;
         this.y = y;
-    }
-    public Bullets(boolean fake){
     }
     public void paintBullets(Graphics g){
         int w = (int) this.w;

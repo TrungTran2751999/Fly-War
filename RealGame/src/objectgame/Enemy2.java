@@ -35,8 +35,8 @@ public class Enemy2 extends Enemys{
     public Rectangle[] updateColission() {
         Rectangle collsion1 = new Rectangle((int) (92+getX()), (int) (63+getY()), (int) (68), (int) (39));
         Rectangle collsion2 = new Rectangle((int) (45+getX()), (int)(8+getY()), (int)(70), (int)(32));
-        Rectangle collsion3 = new Rectangle((int)(72+getX()), (int)(4+getY()), (int)(20), (int)(121));
-        Rectangle collsion4 = new Rectangle((int)(4+getX()), (int)(64+getY()), (int)(66), (int)(35));
+        Rectangle collsion3 = new Rectangle((int) (72+getX()), (int)(4+getY()), (int)(20), (int)(121));
+        Rectangle collsion4 = new Rectangle((int) (4+getX()), (int)(64+getY()), (int)(66), (int)(35));
         enemyCollions = new Rectangle[]{collsion1, collsion2, collsion3, collsion4};
         return enemyCollions;
     }
@@ -60,6 +60,7 @@ public class Enemy2 extends Enemys{
             Rectangle[] collssions = updateColission();
             for(int i=0; i<collssions.length; i++){
                 if(bullets.haveCollision1(collssions[i])){
+                    playSound();
                     this.setHeathBar(this.getHeath()*4);
                     return true;
                 }
@@ -72,6 +73,7 @@ public class Enemy2 extends Enemys{
             Rectangle[] collssions = updateColission();
             for(int i=0; i<collssions.length; i++){
                 if(bullets.haveCollision2(collssions[i])){
+                    playSound();
                     this.setHeathBar(this.getHeath()*4);
                     return true;
                 }

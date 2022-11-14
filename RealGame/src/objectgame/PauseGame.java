@@ -34,6 +34,7 @@ public class PauseGame extends Panel{
         buttonExit = new Rectangle((int) xButton, (int) y+200, (int) wButton, (int) hButton);
     }
     public void paintPausePanel(Graphics g){
+        g.setColor(Color.BLACK);
         g.fillRect((int) x, (int) y, (int) w, (int) h);
         paintButtonResume(g);
         paintButtonExit(g);

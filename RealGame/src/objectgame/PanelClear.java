@@ -30,6 +30,7 @@ public class PanelClear extends Panel {
         buttonExit = new Rectangle((int) xButton, (int) (y + 250), (int) wButton, (int) hButton);
     }
     public void paintPanelOver(Graphics g){
+        g.setColor(Color.BLACK);
         g.fillRect((int) x, (int) y, (int) w, (int) h);
         g.setColor(Color.ORANGE);
         g.setFont(new Font("Arial", 1, 30));
@@ -56,7 +57,6 @@ public class PanelClear extends Panel {
         if(showPanelClear){
             if(clickButton(x, y, buttonRestart)){
                 gameClear = true;
-//                GamePanel.gameEnd = false;
                 PauseGame.isPause = false;
                 System.out.println(PauseGame.isPause);
                 PanelClear.showPanelClear = false;
@@ -67,7 +67,6 @@ public class PanelClear extends Panel {
                 GamePanel.pauseGame = true;
                 GamePanel.gameStart = true;
                 GamePanel.gameRun = false;
-//                GamePanel.gameEnd = false;
                 PauseGame.showPausePanel = false;
                 PauseGame.isPause = false;
                 PanelClear.showPanelClear = false;

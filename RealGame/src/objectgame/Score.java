@@ -12,6 +12,7 @@ public class Score {
     public Score(){};
     public void paintScore(Graphics g){
         g.setFont(fontScore);
+        g.setColor(Color.RED);
         g.drawString("Score: "+(this.scoreCount), 350, 600);
     }
     public void resetGame(){

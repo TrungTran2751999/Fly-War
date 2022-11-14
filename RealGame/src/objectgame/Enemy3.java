@@ -45,10 +45,6 @@ public class Enemy3 extends Enemys{
         g.fillRect(50, 10, (int) this.getHeathBar(), 20);
         g.setColor(Color.BLACK);
         g.drawRect(50, 10, (int) widthHeathBar, 20);
-        Rectangle[] collison = updateColission();
-        for(int i=0; i<collison.length; i++){
-            g.drawRect((int) collison[i].getX(), (int) collison[i].getY(), (int) collison[i].getWidth(), (int) collison[i].getHeight());
-        }
         bulletEnemy3.paintBullet(g);
         if(a % 100==0){
             enemyFire(getX(), getY());
@@ -63,6 +59,7 @@ public class Enemy3 extends Enemys{
         Rectangle[] collssions = updateColission();
         for(int i=0; i<collssions.length; i++){
             if(bullets.haveCollision1(collssions[i])){
+                playSound();
                 this.setHeathBar(this.getHeath()*4);
                 return true;
             }
@@ -73,6 +70,7 @@ public class Enemy3 extends Enemys{
         Rectangle[] collssions = updateColission();
         for(int i=0; i<collssions.length; i++){
             if(bullets.haveCollision2(collssions[i])){
+                playSound();
                 this.setHeathBar(this.getHeath()*4);
                 return true;
             }

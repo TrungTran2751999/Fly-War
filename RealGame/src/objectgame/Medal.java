@@ -19,17 +19,20 @@ public class Medal {
 
     private BufferedImage[] coin;
     public static BufferedImage image;
+    private Sound sound;
 
     public Medal(double x){
         this.x = x;
         backGround = new BackGround(true);
         collisionMedal = new Rectangle((int) this.x, (int) this.y, (int) this.w, (int) this.h);
+        sound = new Sound();
         resetCoin();
     }
     public Medal() throws IOException {
         importImage();
         backGround = new BackGround();
         collisionMedal = new Rectangle((int) this.x, (int) this.y, (int) this.w, (int) this.h);
+        sound = new Sound();
         resetCoin();
     }
     public void paintMedal(Graphics g){
@@ -59,6 +62,7 @@ public class Medal {
         Rectangle[] listCollsionPlayer = Player.collisionPlayer;
         for(Rectangle colPlayer: listCollsionPlayer){
             if(collisionMedal.intersects(colPlayer)){
+                sound.playSoundCoin();
                 if(!Player.isDeath) Score.scoreCount++;
                 return true;
             }

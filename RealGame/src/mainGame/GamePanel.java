@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements ActionListener{
         score = new Score(0);
         startPanel = new StartPanel(true);
         dataHistory = new DataHistory();
+        sound = new Sound();
     }
 
     @Override
