@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public static boolean gameStart = true;
     public static boolean gameRun;
     public static boolean gameEnd;
+    private Explosion explosion;
 
     public GamePanel()  throws IOException {
         inputManage = new InputManage();
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements ActionListener{
         score = new Score(0);
         startPanel = new StartPanel(true);
         dataHistory = new DataHistory();
+        explosion = new Explosion();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class GamePanel extends JPanel implements ActionListener{
             enemyss.paintEnemy(g);
             bullets.paintBullets(g);
             score.paintScore(g);
+            explosion.paintExplosion(g);
             if(PauseGame.isPause && PauseGame.showPausePanel){
                 pauseGamePanel.paintPausePanel(g);
             }

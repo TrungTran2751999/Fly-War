@@ -16,6 +16,7 @@ public class Enemy1 extends Enemys{
     private BulletEnemy1 bulletEnemy1;
     private double widthHeathBar = this.getHeathBar();
     private int a;
+
     public Enemy1(double x, double y, double w, double h, double speedX, double speedY, boolean isDeath, int heath, double heathBar) throws IOException {
         super(x, y, w, h, speedX, speedY, isDeath, heath, heathBar);
         bullets = new Bullets();

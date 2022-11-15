@@ -29,6 +29,7 @@ public class Enemys {
     private int i;
     private double heathBar;
     private Sound sound;
+    private Explosion explosion;
     public Enemys(double x, double y, double w, double h, double speedX, double speedY, boolean isDeath, int heath, double heathBar) {
         this.x = x;
         this.y = y;
@@ -53,6 +54,7 @@ public class Enemys {
         medal = new Medal();
         backGround = new BackGround(true);
         sound = new Sound();
+        explosion = new Explosion();
     }
     public void paintEnemy(Graphics g){
         a++;
@@ -76,7 +78,7 @@ public class Enemys {
                 g.drawImage(enemys1Img.get(i-i), (int) enemys1.get(i-i).getX(), (int) enemys1.get(i-i).getY(), (int) enemys1.get(i-i).getW(), (int) enemys1.get(i-i).getH(), null);
                 enemys1.get(i-i).enemyMove();
                 if(medal.havevCollsionPlayer()){
-                    double widthVisible = backGround.getX() + backGround.getWidth() - 200;
+                    double widthVisible = backGround.getX() + backGround.getWidth() - 150;
                     double xBackground = backGround.getX();
                     double x = Math.floor(Math.random()*(widthVisible-xBackground)+xBackground);
                     medal = new Medal(x);
@@ -86,7 +88,7 @@ public class Enemys {
                 enemys1.get(i-i).paintCollision(g);
                 if(enemys1.get(i-i).haveCollsionBullets1() || enemys1.get(i-i).haveCollsionBullets2()){
                     enemys1.get(i-i).setHeath(enemys1.get(i-i).getHeath()-Player.damage);
-                    System.out.println("Enemy "+ this.i + ": "+ enemys1.get(i-i).getHeath());
+//                    System.out.println("Enemy "+ this.i + ": "+ enemys1.get(i-i).getHeath());
                 }
                 enemyIsDeath(i-i);
             }
@@ -127,6 +129,11 @@ public class Enemys {
     public void enemyIsDeath(int i){
        if(enemys1.get(i).getHeath() <= 0){
            enemys1.get(i).setDeath(true);
+           double x = enemys1.get(i).getX();
+           double y = enemys1.get(i).getY();
+           double w = enemys1.get(i).getW();
+           double h = enemys1.get(i).getH();
+           explosion.addListExplosion(new Explosion(x, y, w, h));
            enemys1.remove(i);
            enemys1Img.remove(i);
            this.i++;
@@ -215,5 +222,13 @@ public class Enemys {
 
     public void setHeathBar(double heathBar) {
         this.heathBar = heathBar;
+    }
+
+    public Explosion getExplosion() {
+        return explosion;
+    }
+
+    public void setExplosion(Explosion explosion) {
+        this.explosion = explosion;
     }
 }

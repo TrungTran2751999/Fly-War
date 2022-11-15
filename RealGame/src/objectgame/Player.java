@@ -35,6 +35,7 @@ public class Player {
     private double widthHeath = this.heathBar;
     private BackGround backGround;
     private Sound sound;
+    private Explosion explosion;
 
     public Player() throws IOException {
         bullets = new Bullets();
@@ -42,6 +43,7 @@ public class Player {
         backGround = new BackGround();
         sound = new Sound();
         importImage();
+        explosion = new Explosion();
     }
     public void paintPlayer(Graphics g){
         g.setColor(Color.RED);
@@ -102,6 +104,7 @@ public class Player {
     public void playerDeath(){
         if(heath <= 0){
             sound.playSoundgameOver();
+            explosion.addListExplosion(new Explosion(x, y, h, w));
             isDeath = true;
             GamePanel.gameEnd = true;
             GamePanel.gameRun = false;
