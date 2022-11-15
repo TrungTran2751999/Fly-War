@@ -51,7 +51,6 @@ public class GamePanel extends JPanel implements ActionListener{
         dataHistory = new DataHistory();
         explosion = new Explosion();
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -44,8 +44,8 @@ public class Enemys {
         sound = new Sound();
     }
     public Enemys() throws IOException {
-        enemys = new Enemys[]{new Enemy1(1, -131, 186, 131, 2, 2, false, 100, 400),
-                              new Enemy2(1, -127 ,159, 127, 2, 2, false, 100, 400),
+        enemys = new Enemys[]{new Enemy2(1, -127 ,159, 127, 2, 2, false, 100, 400),
+                              new Enemy1(1, -131, 186, 131, 2, 2, false, 100, 400),
                               new Enemy3(1, -112, 158, 112, 2, 2, false, 100, 400),
                               };
         enemyImgs = new BufferedImage[]{enemys[0].importImage(), enemys[1].importImage(), enemys[2].importImage()};

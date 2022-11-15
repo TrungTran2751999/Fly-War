@@ -18,6 +18,7 @@ public class Explosion {
     private static ArrayList<Explosion> listExplosion;
     private int count;
     private static int iFrame;
+    private Sound sound;
     public Explosion(double x, double y, double w, double h){
         this.x = x;
         this.y = y;
@@ -27,6 +28,7 @@ public class Explosion {
     public Explosion() throws IOException {
         importSubimage();
         listExplosion = new ArrayList<>();
+        sound = new Sound();
     }
     public void importImage() throws IOException {
         String path = "../source/explosion.png";
@@ -34,6 +36,7 @@ public class Explosion {
     }
     public void paintExplosion(Graphics g){
         if(listExplosion.size() > 0){
+            if(count == 0) sound.playSoundExplosion();
             double x = listExplosion.get(0).getX();
             double y = listExplosion.get(0).getY();
             double w = listExplosion.get(0).getW();
@@ -47,6 +50,7 @@ public class Explosion {
         if(iFrame >= 9){
             listExplosion.remove(0);
             iFrame=0;
+            count=0;
         }
     }
     public void addListExplosion(Explosion explosion){

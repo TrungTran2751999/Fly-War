@@ -31,4 +31,5 @@ public class Sound {
     public void playSoundCoin(){playSound("../sound/coin.wav");}
     public void playSoundgameOver(){playSound("../sound/gameOver.wav");}
     public void playSoundgameClear(){playSound("../sound/gameClear.wav");}
+    public void playSoundExplosion(){playSound("../sound/explosion.wav");}
 }
